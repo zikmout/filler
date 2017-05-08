@@ -115,7 +115,7 @@ void		malloc_piece(t_grid *e, char *line, int ret)
 		if (line[0] == '.' || line[0] == '*')
 		{
 			e->piece[r] = ft_strdup(line);
-		//	ft_putstr_fd("ok\n", 2);
+			//ft_putstr_fd("ok\n", 2);
 			r = r + 1;
 		}
 		if (r == e->prow)

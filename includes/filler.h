@@ -19,21 +19,23 @@
 typedef struct s_grid	t_grid;
 struct		s_grid
 {
-	int		p_num;
-	char	sp;
-	char	bp;
-	int		row;
-	int		col;
+	int		p_num;		//player number initialized to 1
+	char	sp;			// o if p1 , x if p2
+	char	bp;			// O if p1 , X if p2
+	int		row;		// plateau nb of rows
+	int		col;		// plateau nb of columns
 	int		i;
 	int		j;
 	char	**grid;
 	char	**piece;
 	char	**s_piece;
-	int		prow;
-	int		pcol;
-	int		ru;
-	int		rl;
+	int		prow;		//piece nb of raws
+	int		pcol;		// piece nb of columns
+	int		ru;			// piece : nb of rows
+	int		rl;			// piece : nb of columns
 };
+
+//int debug1 = 1;
 
 /* read.c */
 int		algo(t_grid *e, int w);
@@ -55,5 +57,6 @@ int		get_rl(t_grid *e);
 /* tools.c */
 void	print_grid(t_grid *e);
 void	print_piece(t_grid *e);
+void	print_s_piece(t_grid *e);
 
 #endif

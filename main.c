@@ -12,6 +12,8 @@
 
 #include "includes/filler.h"
 
+int debug2 = 0;
+
 int			main(void)
 {
 	t_grid	*e;
@@ -32,35 +34,48 @@ int			main(void)
 			w = get_info(e);
 		if (w == 1 || w == 42)
 		{
+			if (debug2)
+				ft_putstr("-->malloc_grid\n");
 			malloc_grid(e);
+			if (debug2)
+				ft_putstr("-->malloc_s_piece\n");
 			malloc_s_piece(e);
+			if (debug2)
+				print_s_piece(e);
 			w += 1;
 		}
 		else if (w == 2 || w == 43)
 		{
+			if (debug2)
+				ft_putstr("-->debut algo\n");
 			w = algo(e, w);
+			if (debug2)
+				ft_putstr("-->fin algo\n");
 			ft_putnbr(e->i);
 			ft_putchar(' ');
 			ft_putnbr(e->j);
 			ft_putchar('\n');
-			//print_grid(e);
+			if (debug2)
+				print_grid(e);
 			//break ;
 			w = 1;
 		}
 	//	e->i = -1;
 	//	e->j = -4;
-	//	printf("Ret CP = %d\n", check_piece(e, e->i, e->j));
-	//	w += 1;
-		//w = go_next(e);
-//		else if (w == 3)
-//		{
-//			ft_putchar(e->bp);
-//			ft_putnbr(e->i);
-//			ft_putchar(' ');
-//			ft_putnbr(e->j);
-//			ft_putchar('\n');
-//			w = 1;
-//		}
+		if (debug2)
+			printf("Ret CP = %d\n", check_piece(e, e->i, e->j, w));
+		w += 1;
+		w = go_next(e);
+		if (w == 3)
+		{
+			//ft_putchar(e->bp);
+			usleep(1000000);
+			ft_putnbr(e->i);
+			ft_putchar(' ');
+			ft_putnbr(e->j);
+			ft_putchar('\n');
+			w = 1;
+		}
 	}
 //	get_grid();
 	return (0);
