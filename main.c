@@ -21,10 +21,8 @@ int			main(void)
 
 	e = malloc(sizeof(t_grid));
 	e->p_num = 1;
-//	e->row = 30;
-//	e->col = 15;
-			e->i = 0;
-			e->j = 0;
+	e->i = 0;
+	e->j = 0;
 
 	w = 0;
 	while (1)
@@ -37,14 +35,22 @@ int			main(void)
 			if (debug2)
 				ft_putstr("-->malloc_grid\n");
 			malloc_grid(e);
-			if (debug2)
-				ft_putstr("-->malloc_s_piece\n");
-			malloc_s_piece(e);
-			if (debug2)
-				print_s_piece(e);
 			w += 1;
+			if (debug2)
+			{
+				printf("ru = %d, rl = %d\n", e->ru, e->rl);
+				write(1, "print_grid()\n", 14);
+				print_grid(e);
+				write(1, "print_piece()\n", 15);
+				print_piece(e);
+				write(1, "fin_print_piece()\n", 19);
+				print_structure(e);
+				write(1, "fin_print_w ->", 14);
+				ft_putnbr(w);
+				write(1, "<-fin_print_w\n", 15);
+			}
 		}
-		else if (w == 2 || w == 43)
+		if (w == 2 || w == 43)
 		{
 			if (debug2)
 				ft_putstr("-->debut algo\n");
@@ -57,26 +63,13 @@ int			main(void)
 			ft_putchar('\n');
 			if (debug2)
 				print_grid(e);
-			//break ;
+			if (debug2)
+				printf("before w = 1/ w = %d\n", w);
 			w = 1;
 		}
-	//	e->i = -1;
-	//	e->j = -4;
-		if (debug2)
-			printf("Ret CP = %d\n", check_piece(e, e->i, e->j, w));
-		w += 1;
 		w = go_next(e);
-		if (w == 3)
-		{
-			//ft_putchar(e->bp);
-			usleep(1000000);
-			ft_putnbr(e->i);
-			ft_putchar(' ');
-			ft_putnbr(e->j);
-			ft_putchar('\n');
-			w = 1;
-		}
+		if (debug2)
+			printf("after go_net w = %d\n", w);
 	}
-//	get_grid();
 	return (0);
 }

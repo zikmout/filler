@@ -39,8 +39,9 @@ struct		s_grid
 
 /* read.c */
 int		algo(t_grid *e, int w);
-int		check_piece(t_grid *e, int i, int j, int w);
 int		go_next(t_grid *e);
+int		piece_fit_map(t_grid *e, int i, int j);
+int		piece_one_cross(t_grid *e, int i, int j);
 
 /* init.c */
 int		get_info(t_grid *e);
@@ -49,14 +50,9 @@ void	get_p_num(t_grid *e, char *line);
 int		malloc_grid(t_grid *e);
 void	malloc_piece(t_grid *e, char *line, int ret);
 
-/* init2.c */
-void	malloc_s_piece(t_grid *e);
-int		get_ru(t_grid *e);
-int		get_rl(t_grid *e);
-
 /* tools.c */
 void	print_grid(t_grid *e);
 void	print_piece(t_grid *e);
-void	print_s_piece(t_grid *e);
+void	print_structure(t_grid *e);
 
 #endif

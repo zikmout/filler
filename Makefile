@@ -22,7 +22,6 @@ CFLAGS = -I$(INC_DIR)
 
 SOURCES = read.c \
 		  init.c \
-		  init2.c \
 		  tools.c
 
 SRC = $(addprefix sources/,$(SOURCES))

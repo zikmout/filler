@@ -1,78 +1,97 @@
 /* read.c */
 #include "../includes/filler.h"
 
+int debug3 = 0;
+
 int			algo(t_grid *e, int w)
 {
 	int		i;
 	int		j;
 
-//	write(1, "algo\n", 5);
 	i = 0;
 	while (i < e->row)
 	{
 		j = 0;
 		while (j < e->col)
 		{
-//			printf("%c", e->grid[i][j]);
-			if (check_piece(e, i - e->ru, j - e->rl, w) && i - e->ru >= 0 && j - e->rl >= 0 && i - e->ru <= e->prow && j - e->rl <= e->pcol)
+			if (debug3)
+				printf("%c", e->grid[i][j]);
+			if (debug3)
 			{
-			//	printf("Possible en i = %d, j = %d\n", i, j);
-//			ft_printf("%c", e->grid[i][j]);
-//			if (e->grid[i][j] == e->bp)
-//			{
-				e->i = i - e->ru;
-				e->j = j - e->rl;
-				return (1);
+				printf("Possible en i = %d, j = %d?\n", i, j);
+				printf("%c", e->grid[i][j]);
 			}
-//			printf("\n");
+			if (piece_fit_map(e, i, j))// && check_piece(e, i, j, w))
+			{
+				if (debug3)
+					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
+				if (piece_one_cross(e, i, j))// && check_piece(e, i, j, w))
+				{
+					if (debug3)
+					{
+						printf("piece_one_cross = OK\n");
+						printf("---------------------XXXXXpiece_once_cross : ok for i = %d et j = %d\n", i, j);
+						printf("FINAL NUMBER: i = %d et j = %d\n", i, j);
+					}
+					e->i = i;
+					e->j = j;
+					return (1);
+				}
+			}
 			j++;
 		}
-//		ft_printf("\n");
 		i++;
 	}
 	return (1);
 }
 
-int			check_piece(t_grid *e, int i, int j, int w)
+int			piece_fit_map(t_grid *e, int i, int j)
 {
-	int		gi;
-	int		gj;
+	while (i < e->row - e->prow)
+	{
+		if ((i + e->prow) > e->row)
+			return (0);
+		while (j < e->col - e->pcol)
+		{
+			if ((j + e->pcol > e->col))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int			piece_one_cross(t_grid *e, int i, int j)
+{
 	int		pi;
 	int		pj;
 	int		count;
 
-
-
-//	print_piece(e);
-//	printf("i = %d, j = %d\n", i, j);
+	//printf("e->row - e->prow = %d\n", e->row - e->prow);
+	//printf("e->col - e->pcol = %d\n", e->col - e->pcol);
 	count = 0;
-	pi = 0;
-	gi = i;
-//	printf("TEST pour i = %d et j = %d\n", i, j);
-	while (e->piece[pi])
-	{
-//		write(1, "loop\n", 5);
-		pj = 0;
-		gj = j;
-		while (e->piece[pi][pj])
-		{
-//			printf("%c", e->piece[pi][pj]);
-//			printf("pi = %d, pj = %d, e->piece[pi][pj] = %c\n", pi, pj, e->piece[pi][pj]);
-//			write(1, &e->piece[pi][pj], 1);
-			
-			//if (e->piece[pi][pj] == '*' && (e->grid[(gi + pi) % e->row][(gj + pj) % e->col] == 'X' || e->grid[(gi + pi) % e->row][(gj + pj) % e->col] == 'x'))
-				//return (0);
-			else if (e->piece[pi][pj] == '*' && (e->grid[(gi + pi) % e->row][(gj + pj) % e->col] == 'O'))
-				count = count + 1;
-//			if (pi == e->prow - 1 && pj == e->pcol - 1 && count == 1)
-//				return (1);
-//			if (e->piece[pi][pj] == '*')
-//				e->grid[ABS(gi + pi) % e->row][ABS(gj + pj) % e->col] = 'T';
-			pj++;
-		}
-//		printf("\n");
-//		printf("\n");
-		pi++;
+			pi = 0;
+			while (pi < e->prow)
+			{
+				pj = 0;
+				while (pj < e->pcol)
+				{
+					if (e->piece[pi][pj] == '*' && e->grid[i + pi][j + pj] == e->bp)
+					{
+						if (debug3)
+						{
+							printf("e->piece[%d][%d] = -->%c<--\n", pi, pj, e->piece[pi][pj]);
+							printf("e->grid[%d][%d] = -->%c<--\n", i + pi, j + pj, e->grid[i + pi][j + pj]);
+							printf("count++\n");
+						}
+						count++;
+						if (count > 1)
+							return (0);
+					}
+					pj++;
+				}
+				pi++;
 	}
 	if (count != 1)
 		return (0);
@@ -90,7 +109,7 @@ int			go_next(t_grid *e)
 		return (0);
 	else
 		e->j++;
-	while (e->grid[e->i])
+/*	while (e->grid[e->i])
 	{
 		if (e->j == e->col)
 			e->j = 0;
@@ -101,6 +120,6 @@ int			go_next(t_grid *e)
 			e->j++;
 		}
 		e->i++;
-	}
+	}*/
 	return (3);
 }

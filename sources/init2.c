@@ -12,29 +12,37 @@ void		malloc_s_piece(t_grid *e)
 
 	e->ru = get_ru(e);
 	e->rl = get_rl(e);
-	if (debug)
-	{
-		printf("ru = %d, rl = %d\n", e->ru, e->rl);
-		write(1, "print_grid()\n", 14);
-		print_grid(e);
-		write(1, "print_piece()\n", 15);
-		print_piece(e);
-		write(1, "fin_print_piece()\n", 19);
-	}
 	if (!(e->s_piece = malloc(sizeof(char *) * (e->pcol - e->rl) + 1)))
 		return ;
-
 	pi = 0;
 	i = e->ru;
 	while (i < e->prow)
 	{
-		//printf("**e->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
+		//if (debug)
+		//	printf("e->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
 		tmp = ft_strdup("\0");
 		j = e->rl;
 		while (j < e->pcol)
 		{
+		if (debug)
+		{
+			write(1, "->DEBUG\n", 8);
+			ft_putstr("e->rl = ");
+			ft_putnbr(e->rl);
+			ft_putchar('\n');
+	
+			ft_putstr("i = ");
+			ft_putnbr(i);
+			ft_putstr("\nj =");
+			ft_putnbr(j);
+			ft_putstr("\ne->piece[i][j] = ");
+			ft_putchar(e->piece[i][j]);
+			ft_putchar('\n');
+		}
+
 			tmp = ft_strjoina(tmp, e->piece[i][j]);
-			//printf("tmp = %s, pi = %d\n", tmp, pi);
+			if (debug)
+				printf("tmp = %s, pi = %d\n", tmp, pi);
 			j++;
 		}
 		e->s_piece[pi] = tmp;
