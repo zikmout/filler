@@ -7,14 +7,16 @@ void		print_s_piece(t_grid *e)
 	int		j;
 
 	i = 0;
-	while (i < e->row - e->ru)
+	while (i < e->prow - e->ru)
 	{
 		j = 0;
 		while (j < e->pcol - e->rl)
 		{
 			printf("%c", e->s_piece[i][j]);
+			j++;
 		}
 		printf("\n");
+		i++;
 	}
 }
 

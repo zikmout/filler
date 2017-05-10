@@ -12,8 +12,6 @@ void		malloc_s_piece(t_grid *e)
 
 	e->ru = get_ru(e);
 	e->rl = get_rl(e);
-	print_structure(e);
-	exit(0);
 	if (debug)
 	{
 		ft_putstr("*e->ru = ");
@@ -28,13 +26,13 @@ void		malloc_s_piece(t_grid *e)
 		return ;
 	pi = 0;
 	i = e->ru;
-	while (i < e->prow - e->ru)
+	while (i < e->prow - e->ru + 1)
 	{
 		if (debug)
 			printf("MSPe->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
 		tmp = ft_strdup("\0");
 		j = e->rl;
-		while (j < e->pcol - e->rl)
+		while (j < e->pcol)
 		{
 			if (debug)
 			{

@@ -1,7 +1,7 @@
 /* read.c */
 #include "../includes/filler.h"
 
-int debug3 = 1;
+int debug3 = 0;
 
 int			algo2(t_grid *e, int w)
 {
