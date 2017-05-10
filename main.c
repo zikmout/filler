@@ -12,7 +12,7 @@
 
 #include "includes/filler.h"
 
-int debug2 = 0;
+int debug2 = 1;
 
 int			main(void)
 {
@@ -47,8 +47,17 @@ int			main(void)
 				print_grid(e);
 				write(1, "print_piece()\n", 15);
 				print_piece(e);
-				write(1, "fin_print_piece()\n", 19);
+				write(1, "fin_print_piece()\n", 18);
+				
 				print_structure(e);
+				write(1, "malloc_s_piece()\n", 19);
+				malloc_s_piece(e);
+				
+				write(1, "print_structure()\n", 18);
+				print_structure(e);
+
+				write(1, "print_s_piece()\n", 18);
+				//print_s_piece(e);
 				write(1, "fin_print_w ->", 14);
 				ft_putnbr(w);
 				write(1, "<-fin_print_w\n", 15);
@@ -58,10 +67,10 @@ int			main(void)
 		{
 			if (debug2)
 				ft_putstr("-->debut algo\n");
-			if (p % 2 == 0)
+//			if (p % 2 == 0)
 				w = algo1(e, w);
-			else
-				w = algo2(e, w);
+//			else
+//				w = algo2(e, w);
 			if (w == 9)
 			{
 				if (debug2)

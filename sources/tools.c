@@ -1,6 +1,23 @@
 /* tools.c */
 #include "../includes/filler.h"
 
+void		print_s_piece(t_grid *e)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < e->row - e->ru)
+	{
+		j = 0;
+		while (j < e->pcol - e->rl)
+		{
+			printf("%c", e->s_piece[i][j]);
+		}
+		printf("\n");
+	}
+}
+
 void		print_grid(t_grid *e)
 {
 	int		i;
@@ -37,6 +54,7 @@ void		print_piece(t_grid *e)
 		printf("\n");
 		i++;
 	}
+	//ft_putstr("DEBUG\n");
 }
 
 void		print_structure(t_grid *e)

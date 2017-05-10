@@ -1,5 +1,6 @@
-seed = 5565
+seed = 6780
 O: error on input
-./filler won
+X: error on input
+resources/players/grati.filler won
 Score:
-85AGAINST82
+0AGAINST25

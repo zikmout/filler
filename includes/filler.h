@@ -55,5 +55,11 @@ void	malloc_piece(t_grid *e, char *line, int ret);
 void	print_grid(t_grid *e);
 void	print_piece(t_grid *e);
 void	print_structure(t_grid *e);
+void	print_s_piece(t_grid *e);
+
+/* init2.c */
+int		get_rl(t_grid *e);
+int		get_ru(t_grid *e);
+void	malloc_s_piece(t_grid *e);
 
 #endif
