@@ -1,7 +1,7 @@
 /* read.c */
 #include "../includes/filler.h"
 
-int debug3 = 1;
+int debug3 = 0;
 
 int			algo(t_grid *e, int w)
 {
@@ -9,10 +9,10 @@ int			algo(t_grid *e, int w)
 	int		j;
 
 	i = 0;
-	while (i < e->row)
+	while (i <= e->row - e->prow)
 	{
 		j = 0;
-		while (j < e->col)
+		while (j <= e->col - e->pcol)
 		{
 			if (debug3)
 				printf("%c", e->grid[i][j]);
@@ -21,7 +21,12 @@ int			algo(t_grid *e, int w)
 				printf("Possible en i = %d, j = %d?\n", i, j);
 				printf("%c", e->grid[i][j]);
 			}
-			if (piece_fit_map(e, i, j))// && check_piece(e, i, j, w))
+/*			if (i >= e->row - e->prow || j >= e->col - e->pcol + 1)
+			{
+				j++;
+				break ;
+			}
+*/			if (piece_fit_map(e, i, j))// && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
 			{
 				if (debug3)
 					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
@@ -42,7 +47,7 @@ int			algo(t_grid *e, int w)
 		}
 		i++;
 	}
-	return (1);
+	return (9);
 }
 
 int			piece_fit_map(t_grid *e, int i, int j)
@@ -57,10 +62,10 @@ int			piece_fit_map(t_grid *e, int i, int j)
 			return (0);
 		while (j < e->col - e->pcol)
 		{
-			if (debug3)
-				printf("**** j = %d\n", j);
 			if ((j + e->pcol > e->col))
 				return (0);
+			if (debug3)
+				printf("**** j = %d\n", j);
 			j++;
 		}
 		i++;

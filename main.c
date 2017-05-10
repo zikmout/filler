@@ -55,6 +55,12 @@ int			main(void)
 			if (debug2)
 				ft_putstr("-->debut algo\n");
 			w = algo(e, w);
+			if (w == 9)
+			{
+				if (debug2)
+					printf("FINITO\n");
+				exit(0);
+			}
 			if (debug2)
 				ft_putstr("-->fin algo\n");
 			ft_putnbr(e->i);
