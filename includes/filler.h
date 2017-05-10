@@ -38,7 +38,8 @@ struct		s_grid
 //int debug1 = 1;
 
 /* read.c */
-int		algo(t_grid *e, int w);
+int		algo1(t_grid *e, int w);
+int		algo2(t_grid *e, int w);
 int		go_next(t_grid *e);
 int		piece_fit_map(t_grid *e, int i, int j);
 int		piece_one_cross(t_grid *e, int i, int j);

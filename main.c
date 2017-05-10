@@ -18,16 +18,20 @@ int			main(void)
 {
 	t_grid	*e;
 	int		w;
+	int		p;
 
 	e = malloc(sizeof(t_grid));
 	e->p_num = 1;
 	e->i = 0;
 	e->j = 0;
 
+	p = 0;
 	w = 0;
 	while (1)
 	{
-
+		if (p == 1000)
+			p = 0;
+		p++;
 		if (w == 0)
 			w = get_info(e);
 		if (w == 1 || w == 42)
@@ -54,7 +58,10 @@ int			main(void)
 		{
 			if (debug2)
 				ft_putstr("-->debut algo\n");
-			w = algo(e, w);
+			if (p % 2 == 0)
+				w = algo1(e, w);
+			else
+				w = algo2(e, w);
 			if (w == 9)
 			{
 				if (debug2)
