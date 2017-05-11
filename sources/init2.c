@@ -12,6 +12,7 @@ void		malloc_s_piece(t_grid *e)
 
 	e->ru = get_ru(e);
 	e->rl = get_rl(e);
+	
 	if (debug)
 	{
 		ft_putstr("*e->ru = ");
@@ -63,6 +64,7 @@ void		malloc_s_piece(t_grid *e)
 		i++;
 		//free(tmp);
 	}
+	//exit(0);
 	e->piece[i] = NULL;
 	if (debug)
 		print_s_piece(e);
@@ -115,26 +117,30 @@ int			get_rl(t_grid *e)
 	rl = 0;
 	count = 0;
 
+	if (debug)
+		print_structure(e);
+	
 	i = 0;
 	while (i < e->pcol)
 	{
-		j = i;
+		j = 0;
 		while (j < e->prow)
 		{
 			if (debug)
 			{
-				printf("_get_rL e->piece[%d][0] = %c\n", j, e->piece[j][0]);
-				printf("L count = %d\n", count);
+				printf("_get_rL e->piece[%d][0] = %c\n", j, e->piece[j][i]);
 				//usleep(300000);
 			}
-			if (e->piece[j][0] == '.')
+			if (e->piece[j][i] == '.')
 				count++;
-			if (e->piece[j][0] != '.')
+			if (e->piece[j][i] != '.')
 				return (rl);
 
 			if (count == e->prow)
 			{
 				rl += 1;
+				if (debug)
+					printf("L count  +  1  / e->rl ===> %d\n", rl);
 				count = 0;
 			}
 			j++;

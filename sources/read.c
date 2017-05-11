@@ -51,8 +51,8 @@ int			piece_fit_map(t_grid *e, int i, int j)
 		printf("entre i et %d et j et %d\n", e->row - e->prow, e->col - e->pcol);
 //	while (i < e->row - e->prow)
 //	{
-//		if (debug3)
-//			printf("**** i = %d\n", i);
+		if (debug3)
+			printf("**** i = %d\n", i);
 		if ((i + e->prow - e->ru) > e->row)
 			return (0);
 		if ((j + e->pcol - e->rl) > e->col)
@@ -61,8 +61,8 @@ int			piece_fit_map(t_grid *e, int i, int j)
 //		{
 //			if ((j + e->pcol > e->col))
 //				return (0);
-//			if (debug3)
-//				printf("**** j = %d\n", j);
+			if (debug3)
+				printf("**** j = %d\n", j);
 //			j++;
 //		}
 //		i++;
@@ -157,9 +157,8 @@ int			algo2(t_grid *e, int w)
 		while (j > 0)
 		{
 			if (debug3)
-				printf("%c", e->grid[i][j]);
-			if (debug3)
 			{
+				printf("%c", e->grid[i][j]);
 				printf("Possible en i = %d, j = %d?\n", i, j);
 				printf("%c", e->grid[i][j]);
 			}
