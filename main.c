@@ -31,7 +31,6 @@ int			main(void)
 	{
 		if (p == 1000)
 			p = 0;
-		p++;
 		if (w == 0)
 			w = get_info(e);
 		if (w == 1 || w == 42)
@@ -69,10 +68,10 @@ int			main(void)
 			w = go_next(e);
 			if (debug2)
 				ft_putstr("-->debut algo\n");
-//			if (p % 2 == 0)
-			w = algo1(e, w);
-//			else
-//				w = algo2(e, w);
+			if (p % 2 == 0)
+				w = algo1(e, w);
+			else
+				w = algo2(e, w);
 			if (w == 9)
 			{
 				if (debug2)
@@ -90,8 +89,9 @@ int			main(void)
 			if (debug2)
 				printf("before w = 1/ w = %d\n", w);
 			w = 1;
+			p++;
 		}
-	//	w = go_next(e);
+		//w = go_next(e);
 		if (debug2)
 			printf("after go_net w = %d\n", w);
 		//exit(0);

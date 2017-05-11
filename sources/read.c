@@ -144,7 +144,7 @@ int			go_next(t_grid *e)
 		}*/
 	return (2);
 }
-/*
+
 int			algo2(t_grid *e, int w)
 {
 	int		i;
@@ -186,5 +186,3 @@ int			algo2(t_grid *e, int w)
 	}
 	return (9);
 }
-*/
-
