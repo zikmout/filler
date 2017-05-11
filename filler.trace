@@ -1,5 +1,5 @@
-seed = 4412
-X: error on input
+seed = 7100
+./filler: Segfault at 51
 resources/players/grati.filler won
 Score:
-1AGAINST4
+51AGAINST116

@@ -2,49 +2,6 @@
 #include "../includes/filler.h"
 
 int debug3 = 0;
-
-int			algo2(t_grid *e, int w)
-{
-	int		i;
-	int		j;
-
-	i = e->row - e->prow;
-	while (i > 0)
-	{
-		j = e->col - e->pcol;
-		while (j > 0)
-		{
-			if (debug3)
-				printf("%c", e->grid[i][j]);
-			if (debug3)
-			{
-				printf("Possible en i = %d, j = %d?\n", i, j);
-				printf("%c", e->grid[i][j]);
-			}
-			if (piece_fit_map(e, i, j))// && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
-			{
-				if (debug3)
-					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
-				if (piece_one_cross(e, i, j))
-				{
-					if (debug3)
-					{
-						printf("piece_one_cross = OK\n");
-						printf("---------------------XXXXXpiece_once_cross : ok for i = %d et j = %d\n", i, j);
-						printf("FINAL NUMBER: i = %d et j = %d\n", i, j);
-					}
-					e->i = i;
-					e->j = j;
-					return (1);
-				}
-			}
-			j--;
-		}
-		i--;
-	}
-	return (9);
-}
-
 int			algo1(t_grid *e, int w)
 {
 	int		i;
@@ -63,7 +20,7 @@ int			algo1(t_grid *e, int w)
 				printf("Possible en i = %d, j = %d?\n", i, j);
 				printf("%c", e->grid[i][j]);
 			}
-			if (piece_fit_map(e, i, j))// && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
+			if (piece_fit_map(e, i, j) && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
 			{
 	//print_s_piece(e);
 				if (debug3)
@@ -76,8 +33,8 @@ int			algo1(t_grid *e, int w)
 						printf("---------------------XXXXXpiece_once_cross : ok for i = %d et j = %d\n", i, j);
 						printf("FINAL NUMBER: i = %d et j = %d\n", i, j);
 					}
-					e->i = i;
-					e->j = j;
+					e->i = i - e->ru;
+					e->j = j - e->rl;
 					return (1);
 				}
 			}
@@ -85,7 +42,7 @@ int			algo1(t_grid *e, int w)
 		}
 		i++;
 	}
-	return (9);
+	return (2);
 }
 
 int			piece_fit_map(t_grid *e, int i, int j)
@@ -118,12 +75,12 @@ int			piece_one_cross(t_grid *e, int i, int j)
 	int		pi;
 	int		pj;
 	int		count;
-	int		count_x;
+	//int		count_x;
 
 	//printf("e->row - e->prow = %d\n", e->row - e->prow);
 	//printf("e->col - e->pcol = %d\n", e->col - e->pcol);
 	count = 0;
-	count_x = 0;
+	//count_x = 0;
 	pi = 0;
 	while (pi < e->prow - e->ru)
 	{
@@ -138,11 +95,11 @@ int			piece_one_cross(t_grid *e, int i, int j)
 					printf("TESTe->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
 					printf("count_X++\n");
 				}
-				count_x++;
+				//count_x++;
+				return (0);
 			}
 			else if (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == e->bp || e->grid[i + pi][j + pj] == e->sp))
 			{
-
 				if (debug3)
 				{
 					printf("e->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
@@ -150,14 +107,14 @@ int			piece_one_cross(t_grid *e, int i, int j)
 					printf("count++\n");
 				}
 				count++;
-				if (count > 1 || count_x != 0)
+				if (count > 1)
 					return (0);
 			}
 			pj++;
 		}
 		pi++;
 	}
-	if (count != 1 || count_x != 0)
+	if (count != 1)
 		return (0);
 	return (1);
 }
@@ -187,3 +144,47 @@ int			go_next(t_grid *e)
 		}*/
 	return (2);
 }
+/*
+int			algo2(t_grid *e, int w)
+{
+	int		i;
+	int		j;
+
+	i = e->row - e->prow;
+	while (i > 0)
+	{
+		j = e->col - e->pcol;
+		while (j > 0)
+		{
+			if (debug3)
+				printf("%c", e->grid[i][j]);
+			if (debug3)
+			{
+				printf("Possible en i = %d, j = %d?\n", i, j);
+				printf("%c", e->grid[i][j]);
+			}
+			if (piece_fit_map(e, i, j))// && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
+			{
+				if (debug3)
+					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
+				if (piece_one_cross(e, i, j))
+				{
+					if (debug3)
+					{
+						printf("piece_one_cross = OK\n");
+						printf("---------------------XXXXXpiece_once_cross : ok for i = %d et j = %d\n", i, j);
+						printf("FINAL NUMBER: i = %d et j = %d\n", i, j);
+					}
+					e->i = i - e->ru;
+					e->j = j - e->rl;
+					return (1);
+				}
+			}
+			j--;
+		}
+		i--;
+	}
+	return (9);
+}
+*/
+

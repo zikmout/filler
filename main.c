@@ -66,10 +66,11 @@ int			main(void)
 		}
 		if (w == 2 || w == 43)
 		{
+			w = go_next(e);
 			if (debug2)
 				ft_putstr("-->debut algo\n");
 //			if (p % 2 == 0)
-				w = algo1(e, w);
+			w = algo1(e, w);
 //			else
 //				w = algo2(e, w);
 			if (w == 9)
@@ -90,7 +91,7 @@ int			main(void)
 				printf("before w = 1/ w = %d\n", w);
 			w = 1;
 		}
-		w = go_next(e);
+	//	w = go_next(e);
 		if (debug2)
 			printf("after go_net w = %d\n", w);
 		//exit(0);
