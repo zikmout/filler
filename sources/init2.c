@@ -1,7 +1,7 @@
 /* init2.c */
 #include "../includes/filler.h"
 
-int debug = 1;
+int debug = 0;
 
 void		malloc_s_piece(t_grid *e)
 {
@@ -26,10 +26,13 @@ void		malloc_s_piece(t_grid *e)
 		return ;
 	pi = 0;
 	i = e->ru;
-	while (i < e->prow - e->ru + 1)
+	while (i < e->prow)
 	{
 		if (debug)
-			printf("MSPe->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
+		{
+			write(1, "DEBUG1\n", 7);
+			//printf("MSPe->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
+		}
 		tmp = ft_strdup("\0");
 		j = e->rl;
 		while (j < e->pcol)
@@ -88,6 +91,7 @@ int			get_ru(t_grid *e)
 			if (debug)
 			{
 				printf("_get_rU e->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
+				printf("U count = %d\n", count);
 				//usleep(300000);
 			}
 			if (e->piece[i][j] == '.')
@@ -95,7 +99,6 @@ int			get_ru(t_grid *e)
 			if (e->piece[i][j] != '.')
 				return (ru);
 			j++;
-			printf("U count = %d\n", count);
 		}
 		i++;
 	}
@@ -121,13 +124,13 @@ int			get_rl(t_grid *e)
 			if (debug)
 			{
 				printf("_get_rL e->piece[%d][0] = %c\n", j, e->piece[j][0]);
+				printf("L count = %d\n", count);
 				//usleep(300000);
 			}
 			if (e->piece[j][0] == '.')
 				count++;
 			if (e->piece[j][0] != '.')
 				return (rl);
-			printf("L count = %d\n", count);
 
 			if (count == e->prow)
 			{

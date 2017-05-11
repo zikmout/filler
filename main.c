@@ -12,7 +12,7 @@
 
 #include "includes/filler.h"
 
-int debug2 = 1;
+int debug2 = 0;
 
 int			main(void)
 {
@@ -38,8 +38,9 @@ int			main(void)
 		{
 			if (debug2)
 				ft_putstr("-->malloc_grid\n");
-			malloc_grid(e);
-			w += 1;
+			w = malloc_grid(e);
+			malloc_s_piece(e);
+			//w += 1;
 			if (debug2)
 			{
 				printf("ru = %d, rl = %d\n", e->ru, e->rl);
@@ -51,13 +52,13 @@ int			main(void)
 				
 				print_structure(e);
 				write(1, "malloc_s_piece()\n", 19);
-				malloc_s_piece(e);
+				//malloc_s_piece(e);
 				
 				write(1, "print_structure()\n", 18);
 				print_structure(e);
 
 				write(1, "print_s_piece()\n", 18);
-				//print_s_piece(e);
+				print_s_piece(e);
 				write(1, "fin_print_w ->", 14);
 				ft_putnbr(w);
 				write(1, "<-fin_print_w\n", 15);
@@ -92,6 +93,7 @@ int			main(void)
 		w = go_next(e);
 		if (debug2)
 			printf("after go_net w = %d\n", w);
+		//exit(0);
 	}
 	return (0);
 }

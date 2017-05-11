@@ -65,6 +65,7 @@ int			algo1(t_grid *e, int w)
 			}
 			if (piece_fit_map(e, i, j))// && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
 			{
+	//print_s_piece(e);
 				if (debug3)
 					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
 				if (piece_one_cross(e, i, j))
@@ -91,22 +92,24 @@ int			piece_fit_map(t_grid *e, int i, int j)
 {
 	if (debug3)
 		printf("entre i et %d et j et %d\n", e->row - e->prow, e->col - e->pcol);
-	while (i < e->row - e->prow)
-	{
-		if (debug3)
-			printf("**** i = %d\n", i);
-		if ((i + e->prow) > e->row)
+//	while (i < e->row - e->prow)
+//	{
+//		if (debug3)
+//			printf("**** i = %d\n", i);
+		if ((i + e->prow - e->ru) > e->row)
 			return (0);
-		while (j < e->col - e->pcol)
-		{
-			if ((j + e->pcol > e->col))
-				return (0);
-			if (debug3)
-				printf("**** j = %d\n", j);
-			j++;
-		}
-		i++;
-	}
+		if ((j + e->pcol - e->rl) > e->col)
+			return (0);
+//		while (j < e->col - e->pcol)
+//		{
+//			if ((j + e->pcol > e->col))
+//				return (0);
+//			if (debug3)
+//				printf("**** j = %d\n", j);
+//			j++;
+//		}
+//		i++;
+//	}
 	return (1);
 }
 
@@ -122,27 +125,27 @@ int			piece_one_cross(t_grid *e, int i, int j)
 	count = 0;
 	count_x = 0;
 	pi = 0;
-	while (pi < e->prow)
+	while (pi < e->prow - e->ru)
 	{
 		pj = 0;
-		while (pj < e->pcol)
+		while (pj < e->pcol - e->rl)
 		{
-			//printf("TESTe->piece[%d][%d] = -->%c<--\n", pi, pj, e->piece[pi][pj]);
-			if (e->piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == 'X' || e->grid[i + pi][j + pj] == 'x'))
+			//printf("TESTe->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
+			if (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == 'X' || e->grid[i + pi][j + pj] == 'x'))
 			{
 				if (debug3)
 				{
-					printf("TESTe->piece[%d][%d] = -->%c<--\n", pi, pj, e->piece[pi][pj]);
+					printf("TESTe->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
 					printf("count_X++\n");
 				}
 				count_x++;
 			}
-			else if (e->piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == e->bp || e->grid[i + pi][j + pj] == e->sp))
+			else if (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == e->bp || e->grid[i + pi][j + pj] == e->sp))
 			{
 
 				if (debug3)
 				{
-					printf("e->piece[%d][%d] = -->%c<--\n", pi, pj, e->piece[pi][pj]);
+					printf("e->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
 					printf("e->grid[%d][%d] = -->%c<--\n", i + pi, j + pj, e->grid[i + pi][j + pj]);
 					printf("count++\n");
 				}
@@ -182,5 +185,5 @@ int			go_next(t_grid *e)
 		}
 		e->i++;
 		}*/
-	return (3);
+	return (2);
 }
