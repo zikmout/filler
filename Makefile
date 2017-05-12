@@ -21,6 +21,7 @@ CC = gcc
 CFLAGS = -I$(INC_DIR)
 
 SOURCES = read.c \
+		  read2.c \
 		  init.c \
 		  init2.c \
 		  tools.c
