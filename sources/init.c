@@ -40,6 +40,7 @@ int			get_info(t_grid *e)
 	}
 	return (42);
 }
+
 void		get_p_num(t_grid *e, char *line)
 {
 	char	**split;
@@ -48,7 +49,6 @@ void		get_p_num(t_grid *e, char *line)
 
 	nb = ft_strdup("\0");
 	split = ft_strsplit(line, ' ');
-	//printf("LINE = %s\n", line);
 	if (ft_strcmp(split[4], "[./filler]") == 0)
 	{
 		i = 0;

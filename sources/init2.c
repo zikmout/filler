@@ -1,7 +1,16 @@
-/* init2.c */
-#include "../includes/filler.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssicard <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/22 21:16:45 by ssicard           #+#    #+#             */
+/*   Updated: 2016/06/02 18:10:37 by ssicard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int debug = 0;
+#include "../includes/filler.h"
 
 void		malloc_s_piece(t_grid *e)
 {
@@ -12,62 +21,24 @@ void		malloc_s_piece(t_grid *e)
 
 	e->ru = get_ru(e);
 	e->rl = get_rl(e);
-	
-	if (debug)
-	{
-		ft_putstr("*e->ru = ");
-		ft_putnbr(e->ru);
-		ft_putstr("\n*e->rl = ");
-		ft_putnbr(e->rl);
-		ft_putchar('\n');
-		//printf("e->ru = %d\ne->rl = %d\n", e->ru, e->rl);
-	}
-	//if (!(e->s_piece = malloc(sizeof(char *) * (e->pcol - e->rl) + 1)))
 	if (!(e->s_piece = malloc(sizeof(char *) * (e->prow - e->ru) + 1)))
 		return ;
 	pi = 0;
 	i = e->ru;
 	while (i < e->prow)
 	{
-		if (debug)
-		{
-			write(1, "DEBUG1\n", 7);
-			//printf("MSPe->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
-		}
 		tmp = ft_strdup("\0");
 		j = e->rl;
 		while (j < e->pcol)
 		{
-			if (debug)
-			{
-				write(1, "->DEBUG\n", 8);
-				ft_putstr("e->rl = ");
-				ft_putnbr(e->rl);
-				ft_putchar('\n');
-
-				ft_putstr("i = ");
-				ft_putnbr(i);
-				ft_putstr("\nj =");
-				ft_putnbr(j);
-				ft_putstr("\ne->piece[i][j] = ");
-				ft_putchar(e->piece[i][j]);
-				ft_putchar('\n');
-			}
-
 			tmp = ft_strjoina(tmp, e->piece[i][j]);
-			if (debug)
-				printf("tmp = %s, pi = %d\n", tmp, pi);
 			j++;
 		}
 		e->s_piece[pi] = tmp;
 		pi++;
 		i++;
-		//free(tmp);
 	}
-	//exit(0);
 	e->piece[i] = NULL;
-	if (debug)
-		print_s_piece(e);
 }
 
 int			get_ru(t_grid *e)
@@ -79,30 +50,22 @@ int			get_ru(t_grid *e)
 
 	ru = 0;
 	count = 0;
-	i = 0;
-	while (i < e->prow)
+	i = -1;
+	while (++i < e->prow)
 	{
 		if (count == e->pcol)
 		{
 			ru += 1;
 			count = 0;
 		}
-		j = 0;
-		while (j < e->pcol)
+		j = -1;
+		while (++j < e->pcol)
 		{
-			if (debug)
-			{
-				printf("_get_rU e->piece[%d][%d] = %c\n", i, j, e->piece[i][j]);
-				printf("U count = %d\n", count);
-				//usleep(300000);
-			}
 			if (e->piece[i][j] == '.')
 				count++;
 			if (e->piece[i][j] != '.')
 				return (ru);
-			j++;
 		}
-		i++;
 	}
 	return (ru);
 }
@@ -116,37 +79,22 @@ int			get_rl(t_grid *e)
 
 	rl = 0;
 	count = 0;
-
-	if (debug)
-		print_structure(e);
-	
-	i = 0;
-	while (i < e->pcol)
+	i = -1;
+	while (++i < e->pcol)
 	{
-		j = 0;
-		while (j < e->prow)
+		j = -1;
+		while (++j < e->prow)
 		{
-			if (debug)
-			{
-				printf("_get_rL e->piece[%d][0] = %c\n", j, e->piece[j][i]);
-				//usleep(300000);
-			}
 			if (e->piece[j][i] == '.')
 				count++;
 			if (e->piece[j][i] != '.')
 				return (rl);
-
 			if (count == e->prow)
 			{
 				rl += 1;
-				if (debug)
-					printf("L count  +  1  / e->rl ===> %d\n", rl);
 				count = 0;
 			}
-			j++;
 		}
-		i++;
 	}
 	return (rl);
 }
-

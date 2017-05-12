@@ -26,6 +26,13 @@ void		set_adverse(t_grid *e)
 	}
 }
 
+void		init_t_grid(t_grid *e)
+{
+	e->p_num = 1;
+	e->i = 0;
+	e->j = 0;
+}
+
 int			main(void)
 {
 	t_grid	*e;
@@ -33,16 +40,12 @@ int			main(void)
 	int		p;
 
 	e = malloc(sizeof(t_grid));
-	e->p_num = 1;
-	e->i = 0;
-	e->j = 0;
-	
+	init_t_grid(e);
 	p = 0;
 	w = 0;
 	while (1)
 	{
-		if (p == 1000)
-			p = 0;
+		p = (p == 1000) ? (0) : (p);
 		if (w == 0)
 			w = get_info(e);
 		if (w == 1 || w == 42)
@@ -52,27 +55,29 @@ int			main(void)
 			set_adverse(e);
 		}
 		if (w == 2 || w == 43)
-		{
-			w = go_next(e);
-			if (p % 7 == 0)
-				w = algo3(e, w);
-			if (p % 2 == 1)
-				w = algo1(e, w);
-			else
-				w = algo2(e, w);
-			if (w == 9)
-				exit(0);
-			ft_putnbr(e->i);
-			ft_putchar(' ');
-			ft_putnbr(e->j);
-			ft_putchar('\n');
-			w = 1;
-			p++;
-		}
+			w = algos_start(e, w, p++);
 		free_stuff(e);
 	}
 	free(e);
 	return (0);
+}
+
+int			algos_start(t_grid *e, int w, int p)
+{
+	w = go_next(e);
+	if (p % 7 == 0)
+		w = algo3(e, w);
+	if (p % 2 == 1)
+		w = algo1(e, w);
+	else
+		w = algo2(e, w);
+	if (w == 9)
+		exit(0);
+	ft_putnbr(e->i);
+	ft_putchar(' ');
+	ft_putnbr(e->j);
+	ft_putchar('\n');
+	return (1);
 }
 
 void		free_stuff(t_grid *e)
