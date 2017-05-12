@@ -31,8 +31,8 @@ struct		s_grid
 	char	**s_piece;
 	int		prow;		//piece nb of raws
 	int		pcol;		// piece nb of columns
-	int		ru;			// piece : nb of rows
-	int		rl;			// piece : nb of columns
+	int		ru;
+	int		rl;
 };
 
 //int debug1 = 1;

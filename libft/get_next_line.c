@@ -33,7 +33,7 @@ char	*ft_myjoin(char *s1, char const *s2)
 	while (s2 && s2[j] && s2[j] != 10)
 		fresh[i++] = s2[j++];
 	fresh[i] = '\0';
-	free(s1);
+	//free(s1);
 	return (fresh);
 }
 

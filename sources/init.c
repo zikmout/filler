@@ -80,6 +80,7 @@ int			malloc_grid(t_grid *e)
 	char	*line;
 	int		r;
 
+	//print_structure(e);
 	if (!(e->grid = malloc(sizeof(char *) * e->row)))
 		return (0);
 	r = 0;

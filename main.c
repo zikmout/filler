@@ -48,8 +48,6 @@ int			main(void)
 				write(1, "print_piece()\n", 15);
 				print_piece(e);
 				write(1, "fin_print_piece()\n", 18);
-				
-				print_structure(e);
 				write(1, "malloc_s_piece()\n", 19);
 				//malloc_s_piece(e);
 				
@@ -68,6 +66,7 @@ int			main(void)
 			w = go_next(e);
 			if (debug2)
 				ft_putstr("-->debut algo\n");
+			//write(1, "DEB ALGO\n", 9);
 			if (p % 2 == 0)
 				w = algo1(e, w);
 			else
@@ -90,6 +89,21 @@ int			main(void)
 				printf("before w = 1/ w = %d\n", w);
 			w = 1;
 			p++;
+		}
+		if (e->grid)
+		{
+			free(e->grid);
+			e->grid = NULL;
+		}
+		if (e->s_piece)
+		{
+			free(e->s_piece);
+			e->s_piece = NULL;
+		}
+		if (e->piece)
+		{
+			free(e->piece);
+			e->piece = NULL;
 		}
 		//w = go_next(e);
 		if (debug2)
