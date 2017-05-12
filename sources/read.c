@@ -87,12 +87,11 @@ int			algo1(t_grid *e, int w)
 					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
 				if (((i) == (e->row - e->prow)) && ((j) == (e->col - e->pcol)))
 				{
-					//write(1, "TOTOTOTO\n", 9);
 					ft_putnbr(0);
 					ft_putchar(' ');
 					ft_putnbr(0);
 					ft_putchar('\n');
-//					return (0);
+					//return (0);
 					exit(0);
 				}
 				if (piece_one_cross(e, i, j))
@@ -161,6 +160,7 @@ int			piece_one_cross(t_grid *e, int i, int j)
 				//	ft_putchar(e->grid[0][1]);
 				//printf("i = %d\n", i);
 				//ft_putstr("----->debug<-----\n");
+				//print_structure(e);
 				//printf("j = %d\n", j);
 				//printf("pj = %d\n", pj);
 				//printf("pi = %d\n", pi);
@@ -169,7 +169,7 @@ int			piece_one_cross(t_grid *e, int i, int j)
 				//print_structure(e);
 				//printf("e->grid[%d][%d] = -->%c<--\n", i + pi, j + pj, e->grid[i + pi][j + pj]);
 				//printf("---------------------------->TESTe->s_piece[%d][%d] = -->%c<--\n", pi, pj, e->s_piece[pi][pj]);
-			if (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == 'X' || e->grid[i + pi][j + pj] == 'x'))
+			if ((e->p_num == 1 && (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == 'X' || e->grid[i + pi][j + pj] == 'x'))) || (e->p_num == 2 && (e->s_piece[pi][pj] == '*' && (e->grid[i + pi][j + pj] == 'O' || e->grid[i + pi][j + pj] == 'o'))))
 			{
 				if (debug3)
 				{

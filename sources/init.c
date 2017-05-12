@@ -1,4 +1,15 @@
-/* init.c */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssicard <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/22 21:11:02 by ssicard           #+#    #+#             */
+/*   Updated: 2016/06/02 18:10:39 by ssicard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/filler.h"
 
 int			get_info(t_grid *e)
@@ -29,7 +40,6 @@ int			get_info(t_grid *e)
 	}
 	return (42);
 }
-
 void		get_p_num(t_grid *e, char *line)
 {
 	char	**split;
@@ -38,6 +48,7 @@ void		get_p_num(t_grid *e, char *line)
 
 	nb = ft_strdup("\0");
 	split = ft_strsplit(line, ' ');
+	//printf("LINE = %s\n", line);
 	if (ft_strcmp(split[4], "[./filler]") == 0)
 	{
 		i = 0;
@@ -51,7 +62,7 @@ void		get_p_num(t_grid *e, char *line)
 			i++;
 		}
 		e->p_num = ft_atoi(nb);
-		//free(nb);
+		free(nb);
 	}
 }
 
@@ -71,7 +82,7 @@ void		get_rc(t_grid *e, char *line)
 	split = ft_strsplit(tmp, ' ');
 	e->row = ft_atoi(split[0]);
 	e->col = ft_atoi(split[1]);
-	//free(tmp);
+	free(tmp);
 }
 
 int			malloc_grid(t_grid *e)
@@ -80,7 +91,6 @@ int			malloc_grid(t_grid *e)
 	char	*line;
 	int		r;
 
-	//print_structure(e);
 	if (!(e->grid = malloc(sizeof(char *) * e->row)))
 		return (0);
 	r = 0;
@@ -116,7 +126,6 @@ void		malloc_piece(t_grid *e, char *line, int ret)
 		if (line[0] == '.' || line[0] == '*')
 		{
 			e->piece[r] = ft_strdup(line);
-			//ft_putstr_fd("ok\n", 2);
 			r = r + 1;
 		}
 		if (r == e->prow)

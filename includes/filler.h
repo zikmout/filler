@@ -22,6 +22,10 @@ struct		s_grid
 	int		p_num;		//player number initialized to 1
 	char	sp;			// o if p1 , x if p2
 	char	bp;			// O if p1 , X if p2
+	char	p1s;
+	char	p1b;
+	char	p2s;
+	char	p2b;
 	int		row;		// plateau nb of rows
 	int		col;		// plateau nb of columns
 	int		i;

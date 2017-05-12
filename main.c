@@ -22,13 +22,17 @@ int			main(void)
 	e->p_num = 1;
 	e->i = 0;
 	e->j = 0;
+	e->p1s = 'o';
+	e->p1b = 'O';
+	e->p2s = 'x';
+	e->p2b = 'X';
 
 	p = 0;
 	w = 0;
 	while (1)
 	{
-		if (p == 1000)
-			p = 0;
+//		if (p == 1000)
+//			p = 0;
 		if (w == 0)
 			w = get_info(e);
 		if (w == 1 || w == 42)
@@ -39,12 +43,12 @@ int			main(void)
 		if (w == 2 || w == 43)
 		{
 			w = go_next(e);
-			if (p % 7 == 0)
-				w = algo3(e, w);
-			if (p % 2 == 1)
-				w = algo3(e, w);
-			else
-				w = algo2(e, w);
+//			if (p % 7 == 0)
+//				w = algo3(e, w);
+//			if (p % 2 == 1)
+				w = algo1(e, w);
+//			else
+//				w = algo2(e, w);
 			if (w == 9)
 				exit(0);
 			ft_putnbr(e->i);
@@ -52,7 +56,7 @@ int			main(void)
 			ft_putnbr(e->j);
 			ft_putchar('\n');
 			w = 1;
-			p++;
+//			p++;
 		}
 		free_stuff(e);
 	}
