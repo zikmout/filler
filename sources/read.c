@@ -2,6 +2,63 @@
 #include "../includes/filler.h"
 
 int debug3 = 0;
+
+int			algo3(t_grid *e, int w)
+{
+	int		i;
+	int		j;
+
+				//ft_putstr("----->debug<-----\n");
+				//	ft_putchar(e->grid[0][1]);
+	i = 0;
+	while (i <= e->row - e->prow)
+	{
+		j = 0;
+		while (j <= e->col - e->pcol)
+		{
+			if (debug3)
+				printf("%c", e->grid[i][j]);
+			if (debug3)
+			{
+				printf("Possible en i = %d, j = %d?\n", i, j);
+				printf("%c", e->grid[i][j]);
+			}
+			if (piece_fit_map(e, i, j) && i <= (e->row - e->prow) && j <= (e->col - e->pcol))
+			{
+				//ft_putstr("-->loop\n");
+				//print_s_piece(e);
+				if (debug3)
+					printf("--------------------->>>>>piece_fit_map : ok for i = %d et j = %d\n", i, j);
+				if (((i) == (e->row - e->prow)) && ((j) == (e->col - e->pcol)))
+				{
+					//write(1, "TOTOTOTO\n", 9);
+					ft_putnbr(0);
+					ft_putchar(' ');
+					ft_putnbr(0);
+					ft_putchar('\n');
+//					return (0);
+					exit(0);
+				}
+				if (piece_one_cross(e, i, j))
+				{
+					if (debug3)
+					{
+						printf("piece_one_cross = OK\n");
+						printf("---------------------XXXXXpiece_once_cross : ok for i = %d et j = %d\n", i, j);
+						printf("FINAL NUMBER: i = %d et j = %d\n", i, j);
+					}
+					e->i = i - e->ru;
+					e->j = j - e->rl;
+					return (1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (2);
+}
+
 int			algo1(t_grid *e, int w)
 {
 	int		i;
